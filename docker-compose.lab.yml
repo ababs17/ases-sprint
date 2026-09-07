@@ -1,0 +1,31 @@
+
+
+networks:
+  lab:
+    driver: bridge
+    internal: true
+  egress:
+    driver: bridge
+
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ases-lab
+    networks:
+      - lab
+    volumes:
+      - ./labs:/home/ases/labs
+      - .:/home/ases/project
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+  sink:
+    image: kennethreitz/httpbin
+    container_name: ases-sink
+    networks:
+      - lab
+    ports:
+      - "5000:80"

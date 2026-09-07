@@ -1,0 +1,12 @@
+
+# Auto detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Docker files must use LF
+Dockerfile eol=lf
+docker-compose.*.yml eol=lf
+*.sh eol=lf
+
+# Python files
+*.py eol=lf
+
